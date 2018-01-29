@@ -16,8 +16,9 @@ WaitSecs(p.tPostFixatePause/1000);
 
 thisStimulus = allTrials{t};
 DrawFormattedText(d.window,thisStimulus,'center','center',d.white);
-[VBLTimestamp stimulusTime FlipTimestamp Missed Beampos] = Screen('Flip',d.window);
+Screen('Flip',d.window);
 
+stimulusTime = GetSecs;
 
 % Wait for a respnse or timeout
 
