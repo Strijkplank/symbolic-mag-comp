@@ -22,7 +22,8 @@ try
     
     subjdata.runtime = datestr(now,0);
     
-    
+    addpath('functions')
+    addpath('functions/my-ptb-funcs')
     
     KbName('UnifyKeyNames');
     
@@ -135,7 +136,7 @@ try
     %% present the trials
     responseStruct = struct();
     blockCounter = 1;
-    ListenChar(2)
+    %ListenChar(2)
     HideCursor
     
     for t = 1 : size(allTrials,2)

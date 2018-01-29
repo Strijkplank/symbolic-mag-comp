@@ -44,7 +44,7 @@ if pressed  == 1  % if key was pressed do the following
     [pressTime, Index]=min(firstPress); % gets the RT of the first key-press and its ID
     thekey=KbName(Index); %converts KeyID to keyname
     if strcmp(thekey,'q') == 1
-        ListenChar
+        %ListenChar
         sca
         error('quit early')        
     end
