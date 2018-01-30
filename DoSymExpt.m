@@ -37,7 +37,7 @@ try
     
     
     LEFT_RESP = KbName('z');
-    RIGHT_RESP = KbName('/?');
+    RIGHT_RESP = KbName('m');
     SPACE_RESP = KbName('space');
     QUIT_RESP = KbName('q');
     
@@ -57,7 +57,7 @@ try
     % instructions and block markers
     pracStartText= 'Practice Trials';
     expStartText = 'Experimental Trials';
-    instructions = 'Press the left key (z) if the number is smaller than 5 and the right key(/) if the number is greater than 5.';
+    instructions = 'Press the left key (z) if the number is smaller than 5 and the right key(m) if the number is greater than 5.';
     
     % stimlus and trial options
     
@@ -124,8 +124,8 @@ try
     %% present the instructions
     
     
-    fontSize = 50;
-    textWrap = 60;
+    fontSize = 30;
+    textWrap = 50;
     vSpacing = 1.5;
     Screen('TextSize',d.window,fontSize);
     DrawFormattedText(d.window,  instructions, 'center', 'center', d.white, textWrap,[],[],vSpacing);
