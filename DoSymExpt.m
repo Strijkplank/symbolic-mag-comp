@@ -10,15 +10,17 @@ try
     %General questions to ask before hand
     fprintf('First some demographic questions.\n\n\n');
     
-    subjdata.code = input('What is the participant code? ','s');
+    subjdata.code = input('What is the participant number?');
     
-    subjdata.age = input('What is the participant age? ','s');
+    subjdata.age = input('What is the participant age?');
     
     subjdata.gender = input('What is the participant gender? ','s');
     
-    subjdata.grade = input('What is the participant grade? ','s'); % grade
     
-    subjdata.school = input('What is the participant school? ','s');% school
+    subjdata.grade = input('What is the participant grade? '); % grade
+    
+        
+    subjdata.school = input('What is the participant code? ','s');% school
     
     subjdata.runtime = datestr(now,0);
     
@@ -55,9 +57,9 @@ try
     
     
     % instructions and block markers
-    pracStartText= 'Practice Trials';
-    expStartText = 'Experimental Trials';
-    instructions = 'Press the left key (z) if the number is smaller than 5 and the right key(m) if the number is greater than 5.';
+    pracStartText= 'Practice Trials (press space)';
+    expStartText = 'Experimental Trials (press space)';
+    instructions = 'Premi il tasto sinistro (Z) se il numero e'' piu'' piccolo di 5 and il tasto destro (M) se il numero e'' piu'' grande di 5. Cerca di rispondere il piu'' velocemente e accuratamente possibile.';
     
     % stimlus and trial options
     
