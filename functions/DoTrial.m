@@ -11,6 +11,11 @@ WaitSecs(p.tPostFixatePause/1000);
 
 
 
+% Add code to do the following
+% if 5 missed trials or wrong
+% then pause show the text
+% "Fai attenzione"
+% will have to push space to continue
 
 
 
