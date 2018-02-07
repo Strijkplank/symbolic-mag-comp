@@ -1,6 +1,6 @@
-function  responseStruct = DoTrial(responseStruct,d,p,allTrials,device,LeftKey,RightKey,t,typeText)
+function  [responseStruct,missed] = DoTrial(responseStruct,d,p,allTrials,device,LeftKey,RightKey,t,typeText,stimulusSize)
 % Present a trial
-
+KbQueueStart(device);
 % Draw a fixation
 Screen('TextSize',d.window,40)
 DrawFormattedText(d.window,'+','center','center',d.white)
@@ -12,19 +12,22 @@ WaitSecs(p.tPostFixatePause/1000);
 
 
 
+
+
+
 % show the digit
 
 thisStimulus = allTrials{t};
+Screen('TextSize',d.window,stimulusSize)
 DrawFormattedText(d.window,thisStimulus,'center','center',d.white);
 Screen('Flip',d.window);
+
+KbQueueFlush(device);
 
 stimulusTime = GetSecs;
 
 % Wait for a respnse or timeout
 
-
-KbQueueFlush(device);
-KbQueueStart(device);
 
 pressed = 0;
 thekey = 0;
@@ -34,8 +37,6 @@ while pressed == 0
     
     if (GetSecs - stimulusTime) > (p.tTimeout / 1000)
         pressed = 2;
-        firstPress = zeros(1,256);
-        firstPress(KbName('space')) = GetSecs;
     end
 end
 
@@ -67,9 +68,12 @@ if str2double(thisStimulus) > 5 && strcmp(thekey,RightKey)
     correct = 1;
 end
 
+missed = 0;
+
 if pressed  == 2
-    correct = 9;
-    pressTime = GetSecs;
+    correct = 0;
+    pressTime = stimulusTime;
+    missed = 1;
 end
 
 thisRT = (pressTime - stimulusTime) * 1000; % the reaction time in ms

@@ -123,6 +123,7 @@ try
     
     %% present the instructions
     
+    stimulusSize = 40;
     
     fontSize = 30;
     textWrap = 50;
@@ -138,7 +139,7 @@ try
     blockCounter = 1;
     %ListenChar(2)
     HideCursor
-    
+    missedInARow = 0;
     for t = 1 : size(allTrials,2)
         
         thisMark = allMarks(t);
@@ -160,8 +161,18 @@ try
         end
         
         KbQueueCreate(device,responseKeyList)
-        responseStruct = DoTrial(responseStruct,d,p,allTrials,device,LEFT_RESP,RIGHT_RESP,t,typeText );
+        [responseStruct,missed] = DoTrial(responseStruct,d,p,allTrials,device,LEFT_RESP,RIGHT_RESP,t,typeText, stimulusSize);
         
+       if missed == 0
+           missedInARow = 0;
+       elseif missed == 1
+           missedInARow = missedInARow + 1;
+       end
+       
+       if missedInARow > 5
+           disp('TOO MANY MISSED TRIALS. START AGAIN!')
+           error('Start Again!')
+       end
         
     end
     
