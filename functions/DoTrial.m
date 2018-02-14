@@ -1,4 +1,7 @@
 function  [responseStruct,missed] = DoTrial(responseStruct,d,p,allTrials,device,LeftKey,RightKey,t,typeText,stimulusSize)
+LeftKey = KbName(LeftKey);
+RightKey = KbName(RightKey);
+
 % Present a trial
 KbQueueStart(device);
 % Draw a fixation
@@ -41,7 +44,7 @@ while pressed == 0
     [ pressed, firstPress] = KbQueueCheck(device); %  check if any key was pressed.
     
     if (GetSecs - stimulusTime) > (p.tTimeout / 1000)
-        pressed = 2;
+        pressed = 2; % 2 means the trial was missed
     end
 end
 
@@ -59,11 +62,16 @@ end
 correct = 0;
 keyName = 'na';
 switch thekey
-    case LeftKey
+    case (LeftKey)
         keyName = ('left');
-    case RightKey
+    case (RightKey)
         keyName = ('right');
 end
+
+disp(['thekey is ' thekey ])
+disp(['the leftkey is ' LeftKey ])
+disp(['the stimulus is ' str2double(thisStimulus)])
+disp(['the stimulus is ' (thisStimulus)])
 
 if str2double(thisStimulus) < 5 && strcmp(thekey,LeftKey)
     correct = 1;
@@ -77,8 +85,12 @@ missed = 0;
 
 if pressed  == 2
     correct = 0;
-    pressTime = stimulusTime;
-    missed = 1;
+    pressTime = stimulusTime; % set the press time to stimulus time, so that the RT will be 0
+    missed = 1; % mark the trial as missed
+end
+
+if correct == 0
+    missed = 1; % mark the trial as missed if it's incorrect
 end
 
 thisRT = (pressTime - stimulusTime) * 1000; % the reaction time in ms

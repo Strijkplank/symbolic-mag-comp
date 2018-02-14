@@ -1,7 +1,12 @@
-function DoSymExpt
+%function DoSymExpt
+rng('shuffle') % set the randomisation seed
+clear all
+clear Screen
+commandwindow;
 
 ALLOW_QUIT = true;
-SKIP_SYNC = 0;
+SKIP_SYNC = 1;
+MAX_MISSED = 5; % a maximum of 5 missed trials/incorrect trials before it displays a warning message
 thisDateString = datestr(now(),'DDMMYYhhmmss');
 
 
@@ -156,13 +161,14 @@ try
         switch thisMark
             case 1
                 ShowText(d,fontSize,device,spaceKeyList,textWrap,vSpacing,pracStartText);
-                WaitSecs(5);
+                WaitSecs(2);
             case 2
                 ShowText(d,fontSize,device,spaceKeyList,textWrap,vSpacing,[expStartText ' ' num2str(blockCounter) ' di ' num2str(p.nBlocks)]);
-                WaitSecs(5);
+                WaitSecs(2);
         end
         
         KbQueueCreate(device,responseKeyList)
+        
         [responseStruct,missed] = DoTrial(responseStruct,d,p,allTrials,device,LEFT_RESP,RIGHT_RESP,t,typeText, stimulusSize);
         
        if missed == 0
@@ -171,9 +177,12 @@ try
            missedInARow = missedInARow + 1;
        end
        
-       if missedInARow > 5
-           disp('TOO MANY MISSED TRIALS. START AGAIN!')
-           error('Start Again!')
+       if missedInARow >= MAX_MISSED
+
+           % show a warning
+           ShowText(d,fontSize,device,spaceKeyList,textWrap,vSpacing,'Fai attenzione');
+           missedInARow = 0;
+           Screen('Flip',d.window);
        end
         
     end
