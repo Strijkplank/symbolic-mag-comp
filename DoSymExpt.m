@@ -43,6 +43,9 @@ try
     end
     
     
+    
+    
+    
     LEFT_RESP = KbName('z');
     RIGHT_RESP = KbName('m');
     SPACE_RESP = KbName('space');
@@ -130,7 +133,7 @@ try
     
     %% present the instructions
     
-    stimulusSize = 40;
+    stimulusSize = load('fontsize.ini','-ascii');
     
     fontSize = 30;
     textWrap = 50;
