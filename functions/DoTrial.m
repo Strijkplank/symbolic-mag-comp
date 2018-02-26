@@ -3,7 +3,7 @@ LeftKey = KbName(LeftKey);
 RightKey = KbName(RightKey);
 
 % Present a trial
-KbQueueStart(device);
+KbQueueStart([]);
 % Draw a fixation
 Screen('TextSize',d.window,40)
 DrawFormattedText(d.window,'+','center','center',d.white)
@@ -30,7 +30,7 @@ Screen('TextSize',d.window,stimulusSize)
 DrawFormattedText(d.window,thisStimulus,'center','center',d.white);
 Screen('Flip',d.window);
 
-KbQueueFlush(device);
+KbQueueFlush([]);
 
 stimulusTime = GetSecs;
 
@@ -41,7 +41,7 @@ pressed = 0;
 thekey = 0;
 while pressed == 0
     
-    [ pressed, firstPress] = KbQueueCheck(device); %  check if any key was pressed.
+    [ pressed, firstPress] = KbQueueCheck([]); %  check if any key was pressed.
     
     if (GetSecs - stimulusTime) > (p.tTimeout / 1000)
         pressed = 2; % 2 means the trial was missed
@@ -95,7 +95,7 @@ end
 
 thisRT = (pressTime - stimulusTime) * 1000; % the reaction time in ms
 
-KbQueueStop(device);
+KbQueueStop([]);
 
 responseStruct(t).stimulus = thisStimulus;
 responseStruct(t).thekey = thekey;

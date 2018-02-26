@@ -5,7 +5,7 @@ clear Screen
 commandwindow;
 
 ALLOW_QUIT = true;
-SKIP_SYNC = 1;
+SKIP_SYNC = 0;
 MAX_MISSED = 5; % a maximum of 5 missed trials/incorrect trials before it displays a warning message
 thisDateString = datestr(now(),'DDMMYYhhmmss');
 
@@ -141,7 +141,7 @@ try
     Screen('TextSize',d.window,fontSize);
     DrawFormattedText(d.window,  instructions, 'center', 'center', d.white, textWrap,[],[],vSpacing);
     Screen('Flip', d.window);
-    PressToGo(device,spaceKeyList)
+    PressToGo([],spaceKeyList)
     Screen('Flip', d.window);
     
     %% present the trials
@@ -170,7 +170,7 @@ try
                 WaitSecs(2);
         end
         
-        KbQueueCreate(device,responseKeyList)
+        KbQueueCreate([],responseKeyList)
         
         [responseStruct,missed] = DoTrial(responseStruct,d,p,allTrials,device,LEFT_RESP,RIGHT_RESP,t,typeText, stimulusSize);
         

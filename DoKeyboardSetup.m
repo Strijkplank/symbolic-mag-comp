@@ -22,7 +22,7 @@ msgbox('You are now going to be asked to select a file that was created during t
 load([PathName filesep 'params.mat'])
 
 
-onecmpixelheight = mean(horzcat(params.rawInfo.sizeparams.rectWidth));
+onecmpixelheight = params.rawInfo.meanHeight;
 
 Screen('Preference', 'SkipSyncTests', 1)
 [w,rect] = PsychImaging('OpenWindow',0,[]);
