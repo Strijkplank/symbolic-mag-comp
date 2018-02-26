@@ -1,8 +1,9 @@
-%function DoSymExpt
+function DoSymExpt
 rng('shuffle') % set the randomisation seed
 clear all
+clear screen
 clear Screen
-commandwindow;
+sca
 
 ALLOW_QUIT = true;
 SKIP_SYNC = 0;
