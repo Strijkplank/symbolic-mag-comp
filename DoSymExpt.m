@@ -16,17 +16,17 @@ try
     %General questions to ask before hand
     fprintf('First some demographic questions.\n\n\n');
     
-    subjdata.code = input('What is the participant number?','s');
+    subjdata.code = input('Wat is uw proefpersoon-nummer?','s');
     
-    subjdata.age = input('What is the participant age?','s');
+    subjdata.age = input('Wat is uw leeftijd?','s');
     
-    subjdata.gender = input('What is the participant gender? ','s');
+    subjdata.gender = input('Wat is uw geslacht? Gelieve M voor Mannelijk of V voor Vrouwelijk in te geven. ','s');
     
     
-    subjdata.grade = input('What is the participant grade? ','s'); % grade
+    subjdata.grade = 'Adult'
     
         
-    subjdata.school = input('What is the participant code? ','s');% school
+    subjdata.school = 'Leuven'
     
     subjdata.runtime = datestr(now,0);
     
@@ -47,8 +47,8 @@ try
     
     
     
-    LEFT_RESP = KbName('z');
-    RIGHT_RESP = KbName('m');
+    LEFT_RESP = KbName('f');
+    RIGHT_RESP = KbName('j');
     SPACE_RESP = KbName('space');
     QUIT_RESP = KbName('q');
     
@@ -68,7 +68,7 @@ try
     % instructions and block markers
     pracStartText= 'Practice Trials (press space)';
     expStartText = 'Experimental Trials (press space)';
-    instructions = 'Premi il tasto sinistro (Z) se il numero e'' piu'' piccolo di 5 and il tasto destro (M) se il numero e'' piu'' grande di 5. Cerca di rispondere il piu'' velocemente e accuratamente possibile.';
+    instructions = 'Druk op de linker toets (f) als het getal kleiner is als 5, en druk op de rechter toets (j) als het getal groter is als 5.' 'Probeer zo snel en accuraat mogelijk te antwoorden' 'Druk op de spatiebalk om verder te gaan';
     
     % stimlus and trial options
     
